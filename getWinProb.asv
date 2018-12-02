@@ -13,8 +13,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [winProb] = getWinProb()
-era = [2.8, 5.9, 3.94, 4.29 3]; %mean runs per game [2.8, 3.9, 3.94, 4.29 3]
-sd = [2.4, 2.8, 2.4, 2.9, 2.9]; %standard deviation of runs per game [2.4, 2.8, 2.4, 2.9, 2.9]
+era = [100.8, 300.9, 300.94, 400.29 3]; %mean runs per game [100.8, 3.9, 3.94, 4.29 3]
+sd = [2.4, 2.8, 2.4, 2.9, 2.9]; %standard deviation of runs per game
 zScore = (era-4.62)./sd; %4.62 is Atlanta's average runs per game
 
 winProb = normcdf(zScore,0,1,'upper');

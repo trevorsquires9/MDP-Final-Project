@@ -34,6 +34,7 @@ k = 9;
 lambda = 0.95;
 numStates = 3^n; %each pitcher can be in either "tired","medium", or "rested"
 actions = allActions(n,k); %number of possible ways we can play each pitcher per game
+numActions = length(actions);
 winProb = getWinProb();
 err = 5;
 tol = 1e-7;
@@ -41,7 +42,7 @@ tol = 1e-7;
 %% Choose Initial Policy
 d = zeros(numStates,n);
 for i = 1:numStates
-    d(i,:) = actions(randi(length(actions)),:);
+    d(i,:) = actions(1,:);
 end
 
 rewards = zeros(numStates,1);
@@ -52,7 +53,6 @@ end
 
 %% Policy Evaluation;
 while err > tol
-
     P = zeros(numStates);
     for i = 1:numStates %for each state, need to compute probability of reaching any other state
         action = d(i,:);
@@ -76,9 +76,9 @@ while err > tol
     
     for i = 1:numStates
         myState = index2state(i,n);
-        bestActionVal = -10000;
+        bestActionVal = -1000000;
         bestAction = 0;
-        for j = 1:numStates
+        for j = 1:numActions
             action = actions(j,:);
             reward = compReward(myState,action,winProb,k);
             probVector = zeros(1,numStates);

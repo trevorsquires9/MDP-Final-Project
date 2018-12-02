@@ -18,8 +18,15 @@
 
 function [actualWinProb] = actualWinProb(winProb,state)
 actualWinProb = zeros(1,length(state));
-k = 100;
+k = 10;
 for i = 1:length(state)
-    actualWinProb(i) = (winProb(i)+(k-1)/2*state(i))/k;
-end
+    if state(i) == 0
+        actualWinProb(i) = winProb(i)^k;
+        
+    elseif state(i) == 1
+        actualWinProb(i) = winProb(i);
+        
+    else
+        actualWinProb(i) = winProb(i)^(1/k);
+    end
 end
