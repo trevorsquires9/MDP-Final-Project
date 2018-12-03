@@ -46,6 +46,10 @@ for i = 1:numStates
 end
 
 rewards = zeros(numStates,1);
+for i = 1:numStates
+    myState = index2state(i,n);
+    rewards(i) = compReward(myState,d(i,:),winProb,k);
+end
 
 %% Policy Evaluation;
 while err > tol
@@ -62,8 +66,8 @@ while err > tol
             end
             P(i,j) = probability;
         end
-        rewards(i) = compReward(srcState,action,winProb,k);
     end
+    
     shiftP = eye(numStates) - lambda*P;
     v = shiftP\rewards;
     
