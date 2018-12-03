@@ -29,9 +29,9 @@ clc
 close all;
 
 %% Initialization of variables
-n = 5;
+n = 6;
 k = 9;
-lambda = 0.95;
+lambda = 0.99;
 numStates = 3^n; %each pitcher can be in either "tired","medium", or "rested"
 actions = allActions(n,k); %number of possible ways we can play each pitcher per game
 numActions = length(actions);
