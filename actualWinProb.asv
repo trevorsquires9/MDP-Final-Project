@@ -21,10 +21,5 @@ function [actualWinProb] = actualWinProb(winProb,state,action)
 actualWinProb = zeros(1,length(state));
 for i = 1:length(state)
     if state(i) == 0
-        actualWinProb(i) = 1/(action(i)+1)*winProb(i);
-    elseif state(i) == 1
-        actualWinProb(i) = 1/(max(action(i)-3,1))*winProb(i);
-    else
-        actualWinProb(i) = 1/(max(action(i)-6,1))*winProb(i);
-    end
+        
 end

@@ -20,7 +20,7 @@
 
 function [reward] = compReward(state,action,winProb,k)
 
-effWinProb = actualWinProb(winProb,state);
+effWinProb = actualWinProb(winProb,state,action);
 totWinProb = sum(action.*effWinProb)/k;
 reward = totWinProb;
 end
