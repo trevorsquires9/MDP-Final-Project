@@ -38,11 +38,12 @@ numActions = length(actions);
 winProb = getWinProb();
 err = 5;
 tol = 1e-7;
+digits(100);
 
 %% Choose Initial Policy
 d = zeros(numStates,n);
 for i = 1:numStates
-    d(i,:) = actions(1,:);
+    d(i,:) = actions(numActions,:);
 end
 
 rewards = zeros(numStates,1);
@@ -64,7 +65,7 @@ while err > tol
             for p = 1:n
                 probability = probability*transitionProb(srcState(p),action(p),destState(p));
             end
-            P(i,j) = probability; %ITS ACTUALLY STOCHASTIC
+            P(i,j) = probability;
         end
     end
     
@@ -82,7 +83,7 @@ while err > tol
             action = actions(j,:);
             reward = compReward(myState,action,winProb,k);
             probVector = zeros(1,numStates);
-            for s = 1:n
+            for s = 1:numStates
                 destState = index2state(s,n);
                 probVector(s) = 1;
                 for p = 1:n
@@ -96,6 +97,9 @@ while err > tol
             end
         end
         new_d(i,:) = actions(bestAction,:);
+        disp(i)
+        disp(myState)
+        disp(actions(bestAction,:))
     end
     
     %% Stopping condition

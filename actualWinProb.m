@@ -18,7 +18,7 @@
 
 function [actualWinProb] = actualWinProb(winProb,state)
 actualWinProb = zeros(1,length(state));
-k = 10;
+k = 5;
 for i = 1:length(state)
     if state(i) == 0
         actualWinProb(i) = winProb(i)^k;
